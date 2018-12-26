@@ -1,0 +1,41 @@
+.border-right {
+  border-right: 1px solid #ffffff;
+}
+.display-flex {
+  display: flex;
+}
+.k-window-title {
+  line-height: normal !important;
+}
+.inner-btn {
+  width: 100%;
+}
+.inner-btn .k-textbox {
+  padding-right: 35px;
+}
+.inner-btn .k-button {
+  position: absolute;
+  z-index: 999;
+  top: 1px;
+  right: 15px;
+}
+.k-checkbox-label,
+.k-radio-label {
+  padding-top: 3px !important;
+  padding-left: 24px;
+}
+.main-banner .inner-btn button.k-button[ng-reflect-look=primary] {
+  background: #ededed !important;
+  color: #656565 !important;
+  border: 0;
+  border-radius: 0;
+  right: 16px;
+  padding: 4px 7px;
+}
+.k-button-group .k-button:active {
+  background-color: #13A3F7 !important;
+}
+.mandatory:after {
+  content: "*";
+  color: red;
+}

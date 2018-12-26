@@ -1,0 +1,69 @@
+/* Common */
+/* Default, Blue, Azure, Amber, Amethyst, Turquoise, Green */
+.k-tabstrip .k-item {
+  color: #FFB973 !important;
+}
+.k-tabstrip .k-item.k-state-active {
+  color: #313236 !important;
+}
+.k-calendar .k-state-selected,
+.k-calendar .k-weekend.k-state-selected,
+.k-drag-clue,
+.k-event,
+.k-panelbar .k-group > .k-item > .k-link.k-state-selected,
+.k-panelbar > .k-item > .k-link.k-state-selected:not(.k-state-active),
+.k-panelbar > .k-item > .k-link.k-state-selected:not(.k-state-expanded),
+.k-treeview .k-in.k-state-selected {
+  background: #313236 !important;
+  border-color: #313236 !important;
+}
+.k-list-optionlabel:hover.k-state-selected,
+.k-list .k-item.k-state-hover.k-state-selected,
+.k-list .k-item:hover.k-state-selected {
+  background: #313236 !important;
+}
+/* Close - Overrides */
+/* Open - Common */
+.k-dialog-titlebar {
+  background-color: #313236 !important;
+}
+.k-dialog-buttongroup .k-primary {
+  color: #313236 !important;
+}
+.k-action-buttons .k-primary.k-state-hvoer,
+.k-action-buttons .k-primary:hover,
+.k-button.k-primary.k-flat.k-state-hover,
+.k-button.k-primary.k-flat:hover,
+.k-button.k-primary.k-state-hover,
+.k-button.k-primary:hover,
+.k-dialog-buttongroup .k-primary.k-state-hvoer,
+.k-dialog-buttongroup .k-primary:hover,
+.k-slider .k-draghandle:hover,
+.k-switch-on:hover .k-switch-handle {
+  background-color: #313236 !important;
+}
+.k-state-selected {
+  background-color: #313236 !important;
+}
+.k-checkbox:checked + .k-checkbox-label:before {
+  background-color: #313236 !important;
+  border-color: #313236 !important;
+}
+/* Close - Common */
+/* Open - Page Specific */
+.main-banner {
+  background: #313236;
+  border-top-color: #FFB973;
+}
+.main-banner .k-button.k-outline:hover {
+  color: #313236 !important;
+}
+.main-navbar {
+  height: 60px;
+}
+.main-navbar ul li a:hover {
+  border-bottom-color: #313236;
+}
+li.active a {
+  border-bottom-color: #313236 !important;
+}

@@ -1,0 +1,222 @@
+@font-face {
+    font-family: 'FontFace';
+    src:    url('fontFace/FontFace.eot?u0e5h6');
+    src:    url('fontFace/FontFace.eot?u0e5h6#iefix') format('embedded-opentype'),
+        url('fontFace/FontFace.ttf?u0e5h6') format('truetype'),
+        url('fontFace/FontFace.woff?u0e5h6') format('woff'),
+        url('fontFace/FontFace.svg?u0e5h6#Avera') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="customIcon-"], [class*=" customIcon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'FontFace' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.customIcon-z-2-bug:before {
+  content: "\e937";
+}
+.customIcon-z-2-call:before {
+  content: "\e938";
+}
+.customIcon-z-2-camera:before {
+  content: "\e939";
+}
+.customIcon-z-2-exapnd:before {
+  content: "\e93a";
+}
+.customIcon-z-2-night:before {
+  content: "\e93b";
+}
+.customIcon-z-2-pin:before {
+  content: "\e93c";
+}
+.customIcon-z-2-sun:before {
+  content: "\e93d";
+}
+.customIcon-z-2-tick:before {
+  content: "\e93e";
+}
+.customIcon-z-2-urgent:before {
+  content: "\e93f";
+}
+.customIcon-z-2-warning:before {
+  content: "\e940";
+}
+.customIcon-z-1-calculate:before {
+  content: "\e92f";
+}
+.customIcon-z-1-dispatch_fax:before {
+  content: "\e930";
+}
+.customIcon-z-1-emr:before {
+  content: "\e931";
+}
+.customIcon-z-1-pause:before {
+  content: "\e932";
+}
+.customIcon-z-1-play:before {
+  content: "\e933";
+}
+.customIcon-z-1-radiology:before {
+  content: "\e934";
+}
+.customIcon-z-1-reset:before {
+  content: "\e935";
+}
+.customIcon-z-1-stopwatch:before {
+  content: "\e936";
+}
+.customIcon-excel:before {
+  content: "\e92e";
+}
+.customIcon-error:before {
+  content: "\e92c";
+}
+.customIcon-popout:before {
+  content: "\e92d";
+}
+.customIcon-arrow-up:before {
+  content: "\e924";
+}
+.customIcon-arrow-down:before {
+  content: "\e925";
+}
+.customIcon-time:before {
+  content: "\e926";
+}
+.customIcon-date-time:before {
+  content: "\e927";
+}
+.customIcon-date:before {
+  content: "\e928";
+}
+.customIcon-save:before {
+  content: "\e929";
+}
+.customIcon-add:before {
+  content: "\e92a";
+}
+.customIcon-date-light:before {
+  content: "\e92b";
+}
+.customIcon-filter:before {
+  content: "\e922";
+}
+.customIcon-chat:before {
+  content: "\e923";
+}
+.customIcon-warning:before {
+  content: "\e921";
+}
+.customIcon-activate:before {
+  content: "\e900";
+}
+.customIcon-admin:before {
+  content: "\e901";
+}
+.customIcon-contacts:before {
+  content: "\e902";
+}
+.customIcon-dashboard:before {
+  content: "\e903";
+}
+.customIcon-deactivate:before {
+  content: "\e904";
+}
+.customIcon-delete:before {
+  content: "\e905";
+}
+.customIcon-documnetation:before {
+  content: "\e906";
+}
+.customIcon-edit:before {
+  content: "\e907";
+}
+.customIcon-emr:before {
+  content: "\e908";
+}
+.customIcon-fax:before {
+  content: "\e909";
+}
+.customIcon-general_directory:before {
+  content: "\e90a";
+}
+.customIcon-google:before {
+  content: "\e90b";
+}
+.customIcon-home:before {
+  content: "\e90c";
+}
+.customIcon-knowledgenet:before {
+  content: "\e90d";
+}
+.customIcon-labs:before {
+  content: "\e90e";
+}
+.customIcon-link:before {
+  content: "\e90f";
+}
+.customIcon-medical_equipment:before {
+  content: "\e910";
+}
+.customIcon-medication:before {
+  content: "\e911";
+}
+.customIcon-micromedex:before {
+  content: "\e912";
+}
+.customIcon-pi_projects:before {
+  content: "\e913";
+}
+.customIcon-picture:before {
+  content: "\e914";
+}
+.customIcon-protocols:before {
+  content: "\e915";
+}
+.customIcon-reports:before {
+  content: "\e916";
+}
+.customIcon-screen:before {
+  content: "\e917";
+}
+.customIcon-search:before {
+  content: "\e918";
+}
+.customIcon-send:before {
+  content: "\e919";
+}
+.customIcon-site_content:before {
+  content: "\e91a";
+}
+.customIcon-site_profile:before {
+  content: "\e91b";
+}
+.customIcon-sites:before {
+  content: "\e91c";
+}
+.customIcon-technical_equipment:before {
+  content: "\e91d";
+}
+.customIcon-transfers:before {
+  content: "\e91e";
+}
+.customIcon-up_to_date:before {
+  content: "\e91f";
+}
+.customIcon-user_manuals:before {
+  content: "\e920";
+}

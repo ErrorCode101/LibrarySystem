@@ -1,0 +1,135 @@
+﻿﻿<div class="container-fluid expand">
+  <div class="row main-banner margin-bottom-10">
+    <div class="content-wrapper">
+      <div class="col-md-12">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="header">
+              Book Lending Section
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid margin-top-10">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="sub-header full-width">Item Details</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="img-placeholder" id="styleSingleImgDiv">
+            <a class="handhover" id="styleSingleImgLink" ng-click="ctrl.openImageInIDM()">
+              <img class="style-img" sizes="md" id="StyleSingleImg" src="" ng-show="" />
+            </a>
+          </div>
+          <form class="k-form">
+            <fieldset>
+              <label class="k-form-field">
+                <span>Authors</span>
+                <input class="k-textbox" value="bbatista" placeholder="Your username" />
+              </label>
+              <label class="k-form-inline">
+                <span>Publisher</span>
+                <input type="password" class="k-textbox" value="123456" placeholder="Your password"/>
+              </label>
+              <label class="k-form-field">
+                <span>Published Date</span>
+                <kendo-datepicker
+                  [(value)]="value"
+                ></kendo-datepicker>
+              </label>
+            </fieldset>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <form class="k-form">
+            <fieldset>
+              <label class="k-form-field">
+                <span>ISBN</span>
+                <input name="isbn" class="k-textbox" placeholder="ISBN" [(ngModel)]="isbn"/>
+              </label>
+              <label class="k-form-field">
+                <span>Title</span>
+                <input name="title" class="k-textbox" placeholder="Title" [(ngModel)]="title"/>
+              </label>
+              <div class="k-form-field">
+                <span>Sector</span>
+                <input name="sector" class="k-textbox" placeholder="Sector" [(ngModel)]="sector"/>
+              </div>
+            </fieldset>
+          </form>
+
+          <div class="row">
+            <button type="button" class="k-button k-primary pull-right">Reserve</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="sub-header full-width">Item List</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <kendo-grid [data]="gridData" [height]="360" [kendoGridSelectBy]="'isbn'" [selectable]="{'mode':'single'}" [selectedKeys]="selectedIsbns" (selectedKeysChange)="onSelectedKeysChange($event)" [filter]="state.filter" [filterable]="true"
+                      (dataStateChange)="dataStateChange($event)">
+            <kendo-grid-column field="No" title="No" width="40" [filterable]="false">
+              <ng-template kendoGridCellTemplate let-rowIndex="rowIndex">
+                {{rowIndex + 1}}
+              </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="isbn" title="ISBN">
+              <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <kendo-grid-string-filter-cell
+                  [showOperators]="false"
+                  [column]="column"
+                  [filter]="filter">
+                </kendo-grid-string-filter-cell>
+              </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="title" title="Title">
+              <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                <kendo-grid-string-filter-cell
+                  [showOperators]="false"
+                  [column]="column"
+                  [filter]="filter">
+                </kendo-grid-string-filter-cell>
+              </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="sector" title="Sector" [filterable]="false"></kendo-grid-column>
+            <kendo-grid-column field="type" title="Type" [filterable]="false"></kendo-grid-column>
+            <kendo-grid-column field="publisher" title="Publisher" [filterable]="false"></kendo-grid-column>
+            <kendo-grid-column field="availableDate.date" title="Availability" [filterable]="false"></kendo-grid-column>
+            <kendo-grid-command-column title="Manage">
+              <ng-template kendoGridCellTemplate let-dataItem class="k-block" style="background-color: #787878; color: #ffffff;">
+                <div class="k-block" *ngIf="dataItem.availableDate == 'Available'" style="background-color: #787878; color: #ffffff;">
+                  <button kendoButton look="flat" (click)="borrow(dataItem)">Borrow</button>
+                </div>
+                <div class="k-block" *ngIf="dataItem.availableDate != 'Available'" style="background-color: #787878; color: #ffffff;">
+                  <button kendoButton look="flat">Return</button>
+                </div>
+              </ng-template>
+            </kendo-grid-command-column>
+          </kendo-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<kendo-dialog title="{{dialogTitle}}" *ngIf="isDialogOpen" (close)="close()" [minWidth]="250" [width]="550">
+  <app-borrow *ngIf="isBorrow"></app-borrow>
+  <app-return *ngIf="!isBorrow"></app-return>
+</kendo-dialog>

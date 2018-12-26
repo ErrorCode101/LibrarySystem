@@ -1,0 +1,52 @@
+﻿<div class="container-fluid expand">
+  <div class="row">
+    <div class="col-md-6">
+      <form class="k-form align-content-center">
+        <fieldset>
+          <legend>Book Details</legend>
+          <label class="k-form-field">
+            <span>ISBN</span>
+            <input class="k-textbox" [disabled]="true" placeholder="Book Name" />
+          </label>
+          <label class="k-form-field">
+            <span>Book Name</span>
+            <input class="k-textbox" [disabled]="true" placeholder="Book Name"/>
+          </label>
+        </fieldset>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <form class="k-form align-content-center">
+        <fieldset>
+          <legend>Borrower Details</legend>
+          <label class="k-form-field">
+            <span>Library ID</span>
+            <input class="k-textbox" [disabled]="true" placeholder="Book Name" />
+          </label>
+          <label class="k-form-field">
+            <div class="row">
+              <div class="col-md-6">
+                <span>First Name</span>
+                <input class="k-textbox" [disabled]="true" placeholder="Book Name"/>
+              </div>
+              <div class="col-md-6">
+                <span>Last Name</span>
+                <input class="k-textbox" [disabled]="true" placeholder="Book Name"/>
+              </div>
+            </div>
+          </label>
+          <label class="k-form-field">
+            <span>Return Date</span>
+            <kendo-datepicker
+              [(value)]="value"
+            ></kendo-datepicker>
+          </label>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+<kendo-dialog-actions>
+  <button kendoButton (click)="close('no')">No</button>
+  <button kendoButton (click)="close('yes')" primary="true">Yes</button>
+</kendo-dialog-actions>

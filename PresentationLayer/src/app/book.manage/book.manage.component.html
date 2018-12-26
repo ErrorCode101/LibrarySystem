@@ -1,0 +1,347 @@
+﻿﻿<div class="container-fluid expand">
+  <div class="row main-banner margin-bottom-10">
+    <div class="content-wrapper">
+      <div class="col-md-12">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="header">
+              Management Section
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid margin-top-10">
+  <kendo-tabstrip [tabPosition]="'left'">
+    <kendo-tabstrip-tab [title]="'Add Book'" [selected]="true">
+      <ng-template kendoTabContent>
+        <div class="container-fluid margin-top-10">
+          <div class="row">
+                <div class="col-md-12">
+                  <div class="sub-header full-width">Add Book</div>
+                </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="card">
+                <div class="card-block">
+                  <form class="k-form align-content-center">
+                    <fieldset>
+                      <legend>Book Cover</legend>
+                      <div class="k-form-field">
+                      <div class="img-placeholder" id="styleSingleImgDiv">
+                        <a class="handhover" id="styleSingleImgLink" ng-click="ctrl.openImageInIDM()">
+                          <img class="style-img" sizes="md" id="StyleSingleImg" src="" ng-show="" />
+                        </a>
+                      </div>
+                      </div>
+                      <div class="k-form-field">
+                        <kendo-upload required
+                                      name="myUpload" #myUpload="ngModel"
+                                      [saveUrl]="uploadSaveUrl"
+                                      [removeUrl]="uploadRemoveUrl"
+                                      [restrictions]="myRestrictions"
+                                      [(ngModel)]="userImages">
+                        </kendo-upload>
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
+              </div>
+              <div class="row">
+                <div class="text-center">
+                  <button type="button" class="k-button">Cancel</button>
+                  <button type="button" (click)="onSubmitAddBook()" class="k-button k-primary">Submit</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="card">
+                <div class="card-block">
+                  <form class="k-form">
+                    <fieldset>
+                      <legend>Book Details</legend>
+
+                      <label class="k-form-field">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <span>ISBN</span>
+                            <input name="isbn" class="k-textbox" placeholder="ISBN" [(ngModel)]="isbnBook"  required/>
+                          </div>
+                          <div class="col-md-6">
+                            <span>Book Name</span>
+                            <input name="bookName" class="k-textbox" [(ngModel)]="bookName" placeholder="Book Name" />
+                          </div>
+                        </div>
+
+                      </label>
+                      <div class="k-form-field">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <span>Sector</span>
+                            <kendo-dropdownlist [data]="listSectors" [(value)]="sectorBook">
+                            </kendo-dropdownlist>
+                          </div>
+                          <div class="col-md-6">
+                            <span>Number of Pages</span>
+                            <input name="noOfPages" type="number" class="k-textbox" [(ngModel)]="noOfPages">
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <fieldset>
+                      <legend>Publisher Details</legend>
+                      <label class="k-form-field">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <span>Publisher</span>
+                            <input name="publisher" type="text" class="k-textbox" [(ngModel)]="publisher" placeholder="publisher"/>
+                          </div>
+                          <div class="col-md-6">
+                            <span>Published Date</span>
+                            <kendo-datepicker
+                              [(value)]="publishedDateBook"
+                            ></kendo-datepicker>
+                          </div>
+                        </div>
+                      </label>
+                      <label class="k-form-field">
+                        <span>Authors</span>
+                        <input name="authors" class="k-textbox" [(ngModel)]="authors" placeholder="Your username" />
+                      </label>
+                    </fieldset>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </kendo-tabstrip-tab>
+    <kendo-tabstrip-tab [title]="'Add DVD'">
+      <ng-template kendoTabContent>
+          <div class="container-fluid margin-top-10">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="sub-header full-width">Add DVD</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-block">
+                    <form class="k-form align-content-center">
+                      <fieldset>
+                        <legend>DVD Cover</legend>
+                        <div class="k-form-field">
+                          <div class="img-placeholder" id="styleSingleImgDiv">
+                            <a class="handhover" id="styleSingleImgLink" ng-click="ctrl.openImageInIDM()">
+                              <img class="style-img" sizes="md" id="StyleSingleImg" src="" ng-show="" />
+                            </a>
+                          </div>
+                        </div>
+                        <div class="k-form-field">
+                          <kendo-upload required
+                                        name="myUpload" #myUpload="ngModel"
+                                        [saveUrl]="uploadSaveUrl"
+                                        [removeUrl]="uploadRemoveUrl"
+                                        [restrictions]="myRestrictions"
+                                        [(ngModel)]="userImages">
+                          </kendo-upload>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="text-center">
+                    <button type="button" class="k-button">Cancel</button>
+                    <button type="button" class="k-button k-primary" (click)="onSubmitAddDVD()">Submit</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="card">
+                  <div class="card-block">
+                    <form class="k-form">
+                      <fieldset>
+                        <legend>DVD Details</legend>
+
+                        <label class="k-form-field">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <span>ISBN</span>
+                              <input name="isbnDVD" class="k-textbox" placeholder="ISBN" [(ngModel)]="isbnDVD"/>
+                            </div>
+                            <div class="col-md-6">
+                              <span>Title</span>
+                              <input name="dvdName" class="k-textbox" placeholder="Title" [(ngModel)]="dvdName"/>
+                            </div>
+                          </div>
+                        </label>
+                        <div class="k-form-field">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <span>Sector</span>
+                              <kendo-dropdownlist [data]="listSectors" [(value)]="sectorDVD">
+                              </kendo-dropdownlist>
+                            </div>
+                            <div class="col-md-3">
+                              <span>Languages</span>
+                              <input name="languages" type="number" class="k-textbox" [(ngModel)]="languages">
+                            </div>
+                            <div class="col-md-3">
+                              <span>Subtitles</span>
+                              <input name="subtitles" type="number" class="k-textbox" [(ngModel)]="subtitles">
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend>Producer Details</legend>
+                        <label class="k-form-field">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <span>Producer</span>
+                              <input name="publisher" type="text" class="k-textbox" [(ngModel)]="producer" placeholder="Publisher"/>
+                            </div>
+                            <div class="col-md-6">
+                              <span>Published Date</span>
+                              <kendo-datepicker
+                                [(value)]="publishedDateDVD"
+                              ></kendo-datepicker>
+                            </div>
+                          </div>
+                        </label>
+                        <label class="k-form-field">
+                          <span>Actors</span>
+                          <input name="actors" class="k-textbox" [(ngModel)]="actors" placeholder="Actors" />
+                        </label>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </ng-template>
+    </kendo-tabstrip-tab>
+    <kendo-tabstrip-tab [title]="'Add Reader'" [selected]="true">
+      <ng-template kendoTabContent>
+        <div class="container-fluid margin-top-10">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="sub-header full-width">Add Reader</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="card">
+                <div class="card-block">
+                  <form class="k-form align-content-center">
+                    <fieldset>
+                      <legend>Reader Details</legend>
+                      <label class="k-form-field">
+                        <span>Library Id</span>
+                        <input name="libraryId" class="k-textbox" [disabled]="true" [(ngModel)]="libraryId" placeholder="Library Id" />
+                      </label>
+                      <label class="k-form-field">
+                        <span>Name</span>
+                        <input name="readerName" class="k-textbox" [(ngModel)]="reader" placeholder="Name" />
+                      </label>
+                      <label class="k-form-field">
+                        <span>Mobile No</span>
+                        <input name="mobileNo" class="k-textbox" [(ngModel)]="mobileNo" placeholder="Mobile No" />
+                      </label>
+                      <label class="k-form-field">
+                        <span>e - mail</span>
+                        <input name="email" class="k-textbox" [(ngModel)]="email" placeholder="e - mail" />
+                      </label>
+                    </fieldset>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="text-center">
+              <button type="button" class="k-button">Cancel</button>
+              <button type="button" class="k-button k-primary" (click)="onSubmitPerson()">Submit</button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </kendo-tabstrip-tab>
+    <kendo-tabstrip-tab [title]="'Delete Book'" [selected]="false">
+      <ng-template kendoTabContent>
+        <div class="container-fluid margin-top-10">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="sub-header full-width">Delete Book</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <kendo-grid [data]="gridData" [height]="360" [filter]="state.filter" [filterable]="true"
+                          (dataStateChange)="dataStateChange($event)">
+                <kendo-grid-column field="No" title="No" width="40" [filterable]="false">
+                  <ng-template kendoGridCellTemplate let-rowIndex="rowIndex">
+                    {{rowIndex + 1}}
+                  </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="isbn" title="ISBN">
+                  <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <kendo-grid-string-filter-cell
+                      [showOperators]="false"
+                      [column]="column"
+                      [filter]="filter">
+                    </kendo-grid-string-filter-cell>
+                  </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="title" title="Title">
+                  <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+                    <kendo-grid-string-filter-cell
+                      [showOperators]="false"
+                      [column]="column"
+                      [filter]="filter">
+                    </kendo-grid-string-filter-cell>
+                  </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="sector" title="Sector" [filterable]="false"></kendo-grid-column>
+                <kendo-grid-column field="type" title="Type" [filterable]="false"></kendo-grid-column>
+                <kendo-grid-column field="publisher" title="Publisher" [filterable]="false"></kendo-grid-column>
+                <kendo-grid-column field="availableDate.date" title="Availability" [filterable]="false"></kendo-grid-column>
+                <kendo-grid-command-column title="Delete">
+                  <ng-template kendoGridCellTemplate let-dataItem class="k-block" style="background-color: #787878; color: #ffffff;">
+                    <div class="k-block" style="background-color: #787878; color: #ffffff;">
+                      <button kendoButton look="flat" (click)="onDelete(dataItem)">Delete</button>
+                    </div>
+                  </ng-template>
+                </kendo-grid-command-column>
+              </kendo-grid>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </kendo-tabstrip-tab>
+  </kendo-tabstrip>
+
+</div>
+
+<kendo-dialog title="Please confirm" *ngIf="false" (close)="close('cancel')" [minWidth]="250" [width]="450">
+  <p style="margin: 30px; text-align: center;">Are you sure you want to continue?</p>
+  <kendo-dialog-actions>
+    <button kendoButton (click)="close('no')">No</button>
+    <button kendoButton (click)="close('yes')" primary="true">Yes</button>
+  </kendo-dialog-actions>
+</kendo-dialog>
+
+
+

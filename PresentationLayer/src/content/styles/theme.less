@@ -1,0 +1,86 @@
+/* Common */
+@primary-color: #313236;
+@secondary-color: #FFB973;
+
+/* Default, Blue, Azure, Amber, Amethyst, Turquoise, Green */
+@theme: "default";
+
+.k-tabstrip .k-item {
+  color: @secondary-color !important;
+}
+
+.k-tabstrip .k-item.k-state-active {
+  color: @primary-color !important;
+}
+
+.k-calendar .k-state-selected, .k-calendar .k-weekend.k-state-selected, .k-drag-clue, .k-event, .k-panelbar .k-group > .k-item > .k-link.k-state-selected, .k-panelbar > .k-item > .k-link.k-state-selected:not(.k-state-active), .k-panelbar > .k-item > .k-link.k-state-selected:not(.k-state-expanded), .k-treeview .k-in.k-state-selected {
+  background: @primary-color !important;
+  border-color: @primary-color !important;
+}
+
+.k-list-optionlabel:hover.k-state-selected, .k-list .k-item.k-state-hover.k-state-selected, .k-list .k-item:hover.k-state-selected {
+  background: @primary-color !important;
+}
+
+/* Close - Overrides */
+
+/* Open - Common */
+
+.k-dialog-titlebar {
+  background-color: @primary-color !important;
+}
+
+.k-dialog-buttongroup .k-primary {
+  color: @primary-color !important;
+}
+
+.k-action-buttons .k-primary.k-state-hvoer, .k-action-buttons .k-primary:hover, .k-button.k-primary.k-flat.k-state-hover, .k-button.k-primary.k-flat:hover, .k-button.k-primary.k-state-hover, .k-button.k-primary:hover, .k-dialog-buttongroup .k-primary.k-state-hvoer, .k-dialog-buttongroup .k-primary:hover, .k-slider .k-draghandle:hover, .k-switch-on:hover .k-switch-handle {
+  background-color: @primary-color !important;
+}
+
+.k-state-selected {
+  background-color: @primary-color !important;
+}
+
+.k-checkbox:checked + .k-checkbox-label:before {
+  background-color: @primary-color !important;
+  border-color: @primary-color !important;
+}
+
+/* Close - Common */
+
+/* Open - Page Specific */
+
+.main-banner {
+  background: @primary-color;
+  border-top-color: @secondary-color;
+
+  .k-button.k-outline {
+
+    &:hover {
+      color: @primary-color !important;
+    }
+  }
+}
+
+.main-navbar {
+  height: 60px;
+
+  ul {
+    li {
+      a {
+        &:hover {
+          border-bottom-color: @primary-color;
+        }
+      }
+    }
+  }
+}
+
+li {
+  &.active {
+    a {
+      border-bottom-color: @primary-color !important;
+    }
+  }
+}

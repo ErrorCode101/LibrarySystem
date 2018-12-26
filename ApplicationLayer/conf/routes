@@ -1,0 +1,30 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           service_layer.controllers.Application.index()
+
+GET     /json                        service_layer.controllers.Application.jsonOut()
+
+POST    /jsonin                     service_layer.controllers.Application.jsonIn()
+
+POST    /addbook                     service_layer.controllers.ItemController.addBook()
+
+POST    /adddvd                     service_layer.controllers.ItemController.addDVD()
+
+GET     /getbooks                    service_layer.controllers.ItemController.getBooks()
+
+GET     /getdvds                    service_layer.controllers.ItemController.getDVDs()
+
+POST    /upload                     service_layer.controllers.Application.upload()
+
+POST    /addreader                  service_layer.controllers.ItemController.addReader()
+
+GET     /deletebook                 service_layer.controllers.ItemController.deleteBook(id: String ?="")
+
+GET     /deletedvd                 service_layer.controllers.ItemController.deleteDVD(id: String ?="")
+
+GET     /getpersons                 service_layer.controllers.ItemController.getPersons()
+# Map static resources from the /public folder to the /assets URL path
+# GET     /assets/*file               controllers.Assets.at(path="/public", file)

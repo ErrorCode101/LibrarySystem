@@ -1,0 +1,69 @@
+﻿﻿<div class="container-fluid expand">
+  <div class="row main-banner margin-bottom-10">
+    <div class="content-wrapper">
+      <div class="col-md-12">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="header">
+              Dashboard
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid margin-top-10">﻿
+  <div class="row">
+    <div class="col-md-12">
+      <kendo-grid [data]="gridData" [height]="360" [filter]="state.filter" [filterable]="true"
+                  (dataStateChange)="dataStateChange($event)">
+        <kendo-grid-column field="No" title="No" width="40" [filterable]="false">
+          <ng-template kendoGridCellTemplate let-rowIndex="rowIndex">
+            {{rowIndex + 1}}
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="isbn" title="ISBN">
+          <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+            <kendo-grid-string-filter-cell
+              [showOperators]="false"
+              [column]="column"
+              [filter]="filter">
+            </kendo-grid-string-filter-cell>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="title" title="Title">
+          <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+            <kendo-grid-string-filter-cell
+              [showOperators]="false"
+              [column]="column"
+              [filter]="filter">
+            </kendo-grid-string-filter-cell>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="sector" title="Sector" [filterable]="false"></kendo-grid-column>
+        <kendo-grid-column field="Status" title="Status" [filterable]="false"></kendo-grid-column>
+        <kendo-grid-column field="publisher" title="Publisher" [filterable]="false"></kendo-grid-column>
+        <kendo-grid-column field="availableDate.date" title="Availability" [filterable]="false"></kendo-grid-column>
+        <kendo-grid-command-column title="Manage">
+          <ng-template kendoGridCellTemplate let-dataItem class="k-block" style="background-color: #787878; color: #ffffff;">
+            <div class="k-block" *ngIf="dataItem.availableDate == 'Available'" style="background-color: #787878; color: #ffffff;">
+              <button kendoButton look="flat" >Borrow</button>
+            </div>
+            <div class="k-block" *ngIf="dataItem.availableDate != 'Available'" style="background-color: #787878; color: #ffffff;">
+              <button kendoButton look="flat">Return</button>
+            </div>
+          </ng-template>
+        </kendo-grid-command-column>
+      </kendo-grid>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button kendoButton [primary]="true" class="pull-right">Generate Report</button>
+    </div>
+  </div>
+</div>
