@@ -1,5 +1,6 @@
 package data_access_layer.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -7,7 +8,7 @@ import org.mongodb.morphia.annotations.Id;
 public class PersonRepository {
 
     @Id
-    private String _id;
+    private String _id = new ObjectId().toString();;
     private String name;
     private int phoneNo;
     private String email;

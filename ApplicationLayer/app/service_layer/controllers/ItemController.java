@@ -7,10 +7,14 @@ import common_layer.mapper.JsonMapper;
 import common_layer.models.Person;
 import common_layer.models.library.items.Book;
 import common_layer.models.library.items.DVD;
+import data_access_layer.models.BookRepository;
+import data_access_layer.models.DVDRepository;
+import data_access_layer.models.PersonRepository;
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import util.DateTime;
 
 public class ItemController extends Controller {
 
@@ -39,9 +43,8 @@ public class ItemController extends Controller {
     public Result addBook(){
         try {
             JsonNode json = request().body().asJson();
-            Book book = jsonMapper.toBook(json);
-            itemsService.addBook(book);
-            return ok();
+            BookRepository book = jsonMapper.toBookRepo(json);
+            return ok(String.valueOf(itemsService.addBook(book)));
         }catch (Exception ex){
             return badRequest(ex.getMessage());
         }
@@ -51,9 +54,8 @@ public class ItemController extends Controller {
     public Result addDVD(){
         try {
             JsonNode json = request().body().asJson();
-            DVD dvd = jsonMapper.toDVD(json);
-            itemsService.addDVD(dvd);
-            return ok();
+            DVDRepository dvd = jsonMapper.toDVDRepo(json);
+            return ok(String.valueOf(itemsService.addDVD(dvd)));
         }catch (Exception ex){
             return badRequest(ex.getMessage());
         }
@@ -63,7 +65,7 @@ public class ItemController extends Controller {
     public Result addReader(){
         try {
             JsonNode json = request().body().asJson();
-            Person reader = jsonMapper.toPerson(json);
+            PersonRepository reader = jsonMapper.toPersonRepo(json);
             JsonNode jsonR = Json.toJson(itemsService.addReader(reader));
             return ok(jsonR);
         }catch (Exception ex){
@@ -71,13 +73,52 @@ public class ItemController extends Controller {
         }
     }
 
-    public Result borrowItem(){
-        return ok();
+    @BodyParser.Of(BodyParser.Json.class)
+    public Result borrowBook(){
+        try {
+            JsonNode json = request().body().asJson();
+            DateTime date = new DateTime(json.findPath("Date").findPath("Day").asInt(),json.findPath("Date").findPath("Month").asInt(),json.findPath("Date").findPath("Year").asInt());
+            itemsService.borrowBook(json.findPath("Id").textValue(),json.findPath("PersonId").textValue(),date);
+            return ok();
+        }catch (Exception ex){
+            return badRequest(ex.getMessage());
+        }
     }
 
-    public Result returnItem(){
-        return ok();
+    @BodyParser.Of(BodyParser.Json.class)
+    public Result borrowDVD(){
+        try {
+            JsonNode json = request().body().asJson();
+            DateTime date = new DateTime(json.findPath("Date").findPath("Day").asInt(),json.findPath("Date").findPath("Month").asInt(),json.findPath("Date").findPath("Year").asInt());
+            itemsService.borrowDVD(json.findPath("Id").textValue(),json.findPath("PersonId").textValue(),date);
+            return ok();
+        }catch (Exception ex){
+            return badRequest(ex.getMessage());
+        }
     }
+
+    @BodyParser.Of(BodyParser.Json.class)
+    public Result returnBook(){
+        try {
+            JsonNode json = request().body().asJson();
+            itemsService.returnBook(json.findPath("Id").textValue());
+            return ok();
+        }catch (Exception ex){
+            return badRequest(ex.getMessage());
+        }
+    }
+
+    @BodyParser.Of(BodyParser.Json.class)
+    public Result returnDVD(){
+        try {
+            JsonNode json = request().body().asJson();
+            itemsService.returnDVD(json.findPath("Id").textValue());
+            return ok();
+        }catch (Exception ex){
+            return badRequest(ex.getMessage());
+        }
+    }
+
 
     public Result generateReport(){
         return ok();

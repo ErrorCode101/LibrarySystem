@@ -27,10 +27,13 @@ export class LendingComponent implements OnInit {
   public title ="";
   public isbn ="";
   public sector = "";
-
+  public type = "";
   public dialogTitle:string;
   public isDialogOpen:boolean = false;
   public isBorrow:boolean = false;
+  public selectedData:any;
+
+  private readers:any[] = [];
 
   constructor(private httpClient: HttpService) { }
 
@@ -44,9 +47,10 @@ export class LendingComponent implements OnInit {
     this.httpClient.getData("getbooks").subscribe(result =>{
       for(let i of result){
         if(i.availableDate == null || i.availableDate.date == "0/0/0"){
-          i.availableDate = "Available";
-          i["type"]= "Book"
+          i.availableDate = { date: "Available"};
+
         }
+        i["type"]= "Book"
         this.gridData.data.push(i);
         this.gridResult.push(i)
       }
@@ -59,9 +63,11 @@ export class LendingComponent implements OnInit {
     this.httpClient.getData("getdvds").subscribe(result =>{
       for(let i of result){
         if(i.availableDate == null || i.availableDate.date == "0/0/0"){
-          i.availableDate = "Available";
-          i["type"]= "DVD"
+          i.availableDate = { date: "Available"};
+
         }
+        i["publisher"] = i.producer;
+        i["type"]= "DVD"
         this.gridData.data.push(i);
         this.gridResult.push(i)
       }
@@ -81,27 +87,47 @@ export class LendingComponent implements OnInit {
     this.isbn = item.isbn;
     this.title = item.title;
     this.sector = item.sector;
+    this.type = item.type;
   }
 
   public borrow(data:any){
     this.dialogTitle = "Item Borrow";
     this.isDialogOpen = true
-    if(data.availableDate == 'Available'){
+    if(data.availableDate.date == 'Available'){
       this.isBorrow = true;
     }else {
       this.isBorrow = false;
     }
   }
 
+  public return(data:any){
+    this.dialogTitle = "Item Return";
+    this.selectedData= null;
+    if(data.availableDate.date != 'Available'){
+      this.isBorrow = false;
+    }else {
+      this.isBorrow = true;
+    }
+    if(data.reader != undefined && data.reader != null) {
+      this.selectedData = data;
+    }
+    this.isDialogOpen = true;
+  }
+
   public close(){
     this.dialogTitle = "";
     this.isDialogOpen = false;
+    this.gridData.data = [];
+    this.gridData.total = 0;
+    this.gridResult = [];
+    this.getBooks();
+    this.getDVDs();
   }
 
   private getReaders(){
     this.httpClient.getData('getpersons').subscribe(result => {
       this.readers = result;
-      console.log(this.readers)
+      console.log(this.readers);
     });
   }
 }

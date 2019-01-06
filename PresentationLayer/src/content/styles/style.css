@@ -38,7 +38,7 @@ body,
 html {
   font-family: 'roboto', sans-serif;
   color: #555555 !important;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   height: 100%;
   padding-bottom: 15px;
 }
@@ -102,7 +102,7 @@ html {
 }
 .k-block,
 .k-widget {
-  font-size: 0.85rem !important;
+  font-size: 0.95rem !important;
 }
 .main-navbar ul li:first-child {
   padding-left: 0 !important;
@@ -156,7 +156,7 @@ html {
   box-shadow: 0px 0px 21px 5px rgba(0, 0, 0, 0.5);
 }
 .btn {
-  font-size: 0.85rem !important;
+  font-size: 0.95rem !important;
 }
 .btn.btn-primary {
   background-color: #13A3F7 !important;
@@ -166,18 +166,18 @@ html {
 .k-grid td,
 .k-grid th {
   padding: 4px 8px !important;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }
 .k-popup {
-  font-size: 0.85rem !important;
+  font-size: 0.95rem !important;
 }
 .k-button {
-  font-size: 0.85rem !important;
+  font-size: 0.95rem !important;
 }
 .k-input.k-textbox,
 .k-textarea,
 .k-textbox {
-  font-size: 0.85rem !important;
+  font-size: 0.95rem !important;
   padding: 0 4px;
 }
 .k-input.k-textbox,
@@ -208,7 +208,7 @@ html {
 }
 .main-banner input[type=text] {
   border-width: 0 !important;
-  height: 32px !important;
+  height: 22px !important;
   padding: 0 4px;
 }
 .k-animation-container {
@@ -398,7 +398,7 @@ button.k-button[ng-reflect-look=primary] {
 .k-grid td,
 .k-grid th {
   padding: 4px 8px !important;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }
 /* Close - Common */
 /* Open - Page Specific */
@@ -412,7 +412,7 @@ button.k-button[ng-reflect-look=primary] {
 .main-banner label {
   float: left;
   text-align: left;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }
 .main-banner .header {
   text-transform: uppercase;

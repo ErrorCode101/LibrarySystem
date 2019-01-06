@@ -115,11 +115,11 @@
             <kendo-grid-column field="availableDate.date" title="Availability" [filterable]="false"></kendo-grid-column>
             <kendo-grid-command-column title="Manage">
               <ng-template kendoGridCellTemplate let-dataItem class="k-block" style="background-color: #787878; color: #ffffff;">
-                <div class="k-block" *ngIf="dataItem.availableDate == 'Available'" style="background-color: #787878; color: #ffffff;">
+                <div class="k-block" *ngIf="dataItem.availableDate.date == 'Available'" style="background-color: green; color: #ffffff;">
                   <button kendoButton look="flat" (click)="borrow(dataItem)">Borrow</button>
                 </div>
-                <div class="k-block" *ngIf="dataItem.availableDate != 'Available'" style="background-color: #787878; color: #ffffff;">
-                  <button kendoButton look="flat">Return</button>
+                <div class="k-block" *ngIf="dataItem.availableDate.date != 'Available'" style="background-color: red; color: #ffffff;">
+                  <button kendoButton look="flat" (click)="return(dataItem)">Return</button>
                 </div>
               </ng-template>
             </kendo-grid-command-column>
@@ -130,6 +130,6 @@
   </div>
 </div>
 <kendo-dialog title="{{dialogTitle}}" *ngIf="isDialogOpen" (close)="close()" [minWidth]="250" [width]="550">
-  <app-borrow *ngIf="isBorrow"></app-borrow>
-  <app-return *ngIf="!isBorrow"></app-return>
+  <app-borrow *ngIf="isBorrow" [isbn]="isbn" [title]="title" [type]="type"></app-borrow>
+  <app-return *ngIf="!isBorrow" [data]="selectedData" ></app-return>
 </kendo-dialog>

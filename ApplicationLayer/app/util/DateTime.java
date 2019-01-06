@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class DateTime {
 
@@ -74,7 +73,7 @@ public class DateTime {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DATE, days);
-        return new DateTime(cal.get(Calendar.DAY_OF_WEEK),cal.get(Calendar.MONTH),cal.get(Calendar.YEAR));
+        return new DateTime(cal.get(Calendar.DAY_OF_WEEK),cal.get(Calendar.MONTH) + 1,cal.get(Calendar.YEAR));
     }
 
     public String getDate(){

@@ -16,6 +16,7 @@ import org.mongodb.morphia.query.UpdateResults;
 import util.DateTime;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemService implements IItemsService {
@@ -28,14 +29,24 @@ public class ItemService implements IItemsService {
     }
 
 
-    public void addBook(Book book){
-        BookRepository bookRepo = modelMapper.toBookRepo(book);
-        MongoConfig.datastore().save(bookRepo);
+    public boolean addBook(BookRepository book){
+        if(this.getBooks().size() <100) {
+            //BookRepository bookRepo = modelMapper.toBookRepo(book);
+            MongoConfig.datastore().save(book);
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    public void addDVD(DVD dvd){
-        DVDRepository dvdRepo = modelMapper.toDVDRepo(dvd);
-        MongoConfig.datastore().save(dvdRepo);
+    public boolean addDVD(DVDRepository dvd){
+        if(this.getDVDs().size() < 50) {
+            //DVDRepository dvdRepo = modelMapper.toDVDRepo(dvd);
+            MongoConfig.datastore().save(dvd);
+            return  true;
+        }else{
+            return false;
+        }
     }
 
     public List<DVD> getDVDs(){
@@ -43,10 +54,10 @@ public class ItemService implements IItemsService {
         return modelMapper.toDVDList(query.asList());
     }
 
-    public PersonRepository addReader(Person reader){
-        PersonRepository readerRepo = modelMapper.toPersonRepo(reader);
-        MongoConfig.datastore().save(readerRepo);
-        return readerRepo;
+    public PersonRepository addReader(PersonRepository reader){
+        //PersonRepository readerRepo = modelMapper.toPersonRepo(reader);
+        MongoConfig.datastore().save(reader);
+        return reader;
     }
 
     public List<Person> getPersons(){
@@ -64,49 +75,81 @@ public class ItemService implements IItemsService {
         MongoConfig.datastore().delete(query);
     }
 
-    public void borrowBook(String bookid, String personId, DateTime borrowedDate){
-        final Query<PersonRepository> personQuery = MongoConfig.datastore().createQuery(PersonRepository.class).field("id").equal(personId);
-        PersonRepository person = personQuery.asList().get(0);
-        final Query<BookRepository> bookQuery = MongoConfig.datastore().createQuery(BookRepository.class).field("id").equal(bookid);
-        final UpdateOperations<BookRepository> updateBook = MongoConfig.datastore().createUpdateOperations(BookRepository.class).
-                set("borrowedDate",borrowedDate).set("reader", person);
-        final UpdateResults result = MongoConfig.datastore().update(bookQuery,updateBook);
+    public void borrowBook(String bookid, String personId, DateTime borrowedDate) throws ParseException {
+        PersonRepository personQuery = this.findPerson(personId);
+        BookRepository bookQuery = this.findBook(bookid);
+        bookQuery.setReader(personQuery);
+        bookQuery.setBorrowedDate(borrowedDate);
+        bookQuery.setAvailableDate(DateTime.addDays(borrowedDate.getDate(),5));
+        MongoConfig.datastore().save(bookQuery);
     }
 
     public void returnBook(String bookid){
-        final Query<BookRepository> bookQuery = MongoConfig.datastore().createQuery(BookRepository.class).field("id").equal(bookid);
-        final UpdateOperations<BookRepository> updateBook = MongoConfig.datastore().createUpdateOperations(BookRepository.class).
-                unset("borrowedDate").unset("reader");
-        final UpdateResults result = MongoConfig.datastore().update(bookQuery,updateBook);
+        BookRepository bookQuery = this.findBook(bookid);
+        bookQuery.setReader(null);
+        bookQuery.setBorrowedDate(null);
+        bookQuery.setAvailableDate(null);
+        MongoConfig.datastore().save(bookQuery);
     }
 
-    public void borrowDVD(String dvdid, String personId, DateTime borrowedDate){
-        final Query<PersonRepository> personQuery = MongoConfig.datastore().createQuery(PersonRepository.class).field("id").equal(personId);
-        PersonRepository person = personQuery.asList().get(0);
-        final Query<DVDRepository> dvdQuery = MongoConfig.datastore().createQuery(DVDRepository.class).field("id").equal(dvdid);
-        final UpdateOperations<DVDRepository> updateDVD = MongoConfig.datastore().createUpdateOperations(DVDRepository.class).
-                set("boorwedDate",borrowedDate).set("reader", person);
-        final UpdateResults result = MongoConfig.datastore().update(dvdQuery,updateDVD);
+    public void borrowDVD(String dvdid, String personId, DateTime borrowedDate) throws ParseException {
+        PersonRepository personQuery = this.findPerson(personId);
+        DVDRepository dvdQuery = this.findDVD(dvdid);
+        dvdQuery.setReader(personQuery);
+        dvdQuery.setBorrowedDate(borrowedDate);
+        dvdQuery.setAvailableDate(DateTime.addDays(borrowedDate.getDate(),5));
+        MongoConfig.datastore().save(dvdQuery);
     }
 
     public void returnDVD(String dvdid){
-        final Query<DVDRepository> dvdQuery = MongoConfig.datastore().createQuery(DVDRepository.class).field("id").equal(dvdid);
-        final UpdateOperations<DVDRepository> updateDVD = MongoConfig.datastore().createUpdateOperations(DVDRepository.class).
-                unset("boorwedDate").unset("reader");
-        final UpdateResults result = MongoConfig.datastore().update(dvdQuery,updateDVD);
+        DVDRepository dvdQuery = this.findDVD(dvdid);
+        dvdQuery.setReader(null);
+        dvdQuery.setBorrowedDate(null);
+        dvdQuery.setAvailableDate(null);
+        MongoConfig.datastore().save(dvdQuery);
     }
 
     public DateTime availableDate(String bookid){
-        final Query<BookRepository> query = MongoConfig.datastore().createQuery(BookRepository.class).field("id").equal(bookid);
+        final Query<BookRepository> query = MongoConfig.datastore().createQuery(BookRepository.class).field("isbn").equal(bookid);
         BookRepository book = query.asList().get(0);
         return book.getBorrowedDate();
     }
 
     public void makeReservation(ReservationRepository reserve) throws ParseException {
-        final Query<BookRepository> bookQuery = MongoConfig.datastore().createQuery(BookRepository.class).field("id").equal(reserve.bookId);
+        final Query<BookRepository> bookQuery = MongoConfig.datastore().createQuery(BookRepository.class).field("isbn").equal(reserve.bookId);
         final UpdateOperations<BookRepository> updateBook = MongoConfig.datastore().createUpdateOperations(BookRepository.class).
                 set("availableDate",DateTime.addDays(reserve.reservationDate.getDate(),7));
         final UpdateResults result = MongoConfig.datastore().update(bookQuery,updateBook);
         MongoConfig.datastore().save(reserve);
+    }
+
+    private PersonRepository findPerson(String id){
+        final Query<PersonRepository> query = MongoConfig.datastore().createQuery(PersonRepository.class);
+        for (PersonRepository person: query.asList()) {
+            if(person.get_id().equals(id)){
+                return person;
+            }
+        }
+        return null;
+    }
+
+    private BookRepository findBook(String id){
+        final Query<BookRepository> query = MongoConfig.datastore().createQuery(BookRepository.class);
+        for (BookRepository book: query.asList()) {
+            if(book.getIsbn().equals(id)){
+                return book;
+            }
+        }
+        return null;
+    }
+
+    private DVDRepository findDVD(String id){
+        final Query<DVDRepository> query = MongoConfig.datastore().createQuery(DVDRepository.class);
+        for (DVDRepository dvd: query.asList()) {
+            if(dvd.getIsbn().equals(id)){
+                return dvd;
+            }
+        }
+        return null;
     }
 }

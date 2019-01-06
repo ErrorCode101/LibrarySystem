@@ -6,19 +6,19 @@
           <legend>Book Details</legend>
           <label class="k-form-field">
             <span>ISBN</span>
-            <input class="k-textbox" [disabled]="true" placeholder="Book Name" />
+            <input class="k-textbox" name="isbn" [disabled]="true" placeholder="ISBN" [(ngModel)]="isbn"/>
           </label>
           <label class="k-form-field">
             <span>Book Name</span>
-            <input class="k-textbox" [disabled]="true" placeholder="Book Name"/>
+            <input class="k-textbox" name="bookName" [disabled]="true" placeholder="Book Name" [(ngModel)]="bookName"/>
           </label>
           <label class="k-form-field">
             <span>Return Date</span>
-            <input class="k-textbox" [disabled]="true" placeholder="Book Name"/>
+            <input class="k-textbox"  name="returnDate"[disabled]="true" placeholder="Return Date" [(ngModel)]="returnDate"/>
           </label>
           <label class="k-form-field">
             <span>Fine</span>
-            <input class="k-textbox" [disabled]="true" placeholder="Book Name"/>
+            <input class="k-textbox" name="fine" [disabled]="true" placeholder="Fine" [ngModel]="fine"/>
           </label>
         </fieldset>
       </form>
@@ -29,25 +29,15 @@
           <legend>Borrower Details</legend>
           <label class="k-form-field">
             <span>Library ID</span>
-            <input class="k-textbox" [disabled]="true" placeholder="Book Name" />
+            <input class="k-textbox" name="libraryid" [disabled]="true" placeholder="libraryId" [(ngModel)]="libraryId" />
           </label>
           <label class="k-form-field">
             <div class="row">
               <div class="col-md-6">
-                <span>First Name</span>
-                <input class="k-textbox" [disabled]="true" placeholder="Book Name"/>
-              </div>
-              <div class="col-md-6">
-                <span>Last Name</span>
-                <input class="k-textbox" [disabled]="true" placeholder="Book Name"/>
+                <span>Name</span>
+                <input class="k-textbox" name="name" [disabled]="true" placeholder="Name" [(ngModel)]="firstName"/>
               </div>
             </div>
-          </label>
-          <label class="k-form-field">
-            <span>Return Date</span>
-            <kendo-datepicker
-              [(value)]="value"
-            ></kendo-datepicker>
           </label>
         </fieldset>
       </form>
@@ -55,6 +45,5 @@
   </div>
 </div>
 <kendo-dialog-actions>
-  <button kendoButton (click)="close('no')">No</button>
-  <button kendoButton (click)="close('yes')" primary="true">Yes</button>
+  <button kendoButton (click)="return()" primary="true">Return</button>
 </kendo-dialog-actions>

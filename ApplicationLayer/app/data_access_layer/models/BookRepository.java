@@ -1,5 +1,6 @@
 package data_access_layer.models;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import util.DateTime;
@@ -10,7 +11,7 @@ import java.util.List;
 public class BookRepository {
 
     @Id
-    private String isbn;
+    private String isbn = new ObjectId().toString();
     private String title;
     private List<String> authors;
     private String publisher;

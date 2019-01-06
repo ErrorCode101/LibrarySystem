@@ -14,7 +14,7 @@ export class AppComponent {
   title = 'Westminster Library System';
 
   menu = [
-    { title: 'Home', link: '#/home' },
+    { title: 'Home', link: '#/' },
     { title: 'Lending Section', link: '#/lending' },
     { title: 'Management Section', link: '#/management' },
     { title: 'Dashboard', link: '#/dashboard ' },

@@ -4,6 +4,8 @@ package business_layer.core_api;
 import common_layer.models.Person;
 import common_layer.models.library.items.Book;
 import common_layer.models.library.items.DVD;
+import data_access_layer.models.BookRepository;
+import data_access_layer.models.DVDRepository;
 import data_access_layer.models.PersonRepository;
 import data_access_layer.models.ReservationRepository;
 import util.DateTime;
@@ -15,23 +17,23 @@ public interface IItemsService {
 
     List<Book> getBooks();
 
-    void addBook(Book book);
+    boolean addBook(BookRepository book);
 
-    void addDVD(DVD dvd);
+    boolean addDVD(DVDRepository dvd);
 
     List<DVD> getDVDs();
 
-    PersonRepository addReader(Person reader);
+    PersonRepository addReader(PersonRepository reader);
 
     void deleteBook(String id);
 
     void deleteDVD(String id);
 
-    void borrowBook(String bookid, String personId, DateTime borrowedDate);
+    void borrowBook(String bookid, String personId, DateTime borrowedDate) throws ParseException;
 
     void returnBook(String bookid);
 
-    void borrowDVD(String dvdid, String personId, DateTime borrowedDate);
+    void borrowDVD(String dvdid, String personId, DateTime borrowedDate) throws ParseException;
 
     void returnDVD(String dvdid);
 

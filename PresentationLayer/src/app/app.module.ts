@@ -21,11 +21,15 @@ import { ReserveComponent } from './reserve/reserve.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { DeleteComponent } from './delete/delete.component';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
+
+
 
 
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent , data: {animation: 'HomePage'}},
+  { path: '', component: HomeComponent , data: {animation: 'HomePage'}},
   { path: 'lending', component : LendingComponent, data: {animation: 'LendingPage'}},
   { path: 'management', component : BookManageComponent, data: {animation: 'ManagementPage'}},
   { path: 'dashboard', component : DashboardComponent}
@@ -56,6 +60,8 @@ const appRoutes: Routes = [
     LayoutModule,
     UploadModule,
     DropDownsModule,
+    PDFExportModule,
+    ExcelExportModule,
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

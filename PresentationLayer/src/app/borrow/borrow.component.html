@@ -21,15 +21,14 @@
       <legend>Borrower Details</legend>
       <label class="k-form-field">
         <span>Library ID</span>
-        <kendo-autocomplete name="libraryid" [data]="readers" [valueField]="'_id'" [value]="libraryId">
+        <kendo-autocomplete name="libraryid" [data]="readers" (valueChange)="valueChange($event)" [filterable]="true" (filterChange)="filterChange($event)" [valueField]="'_id'" [(ngModel)]="libraryId">
         </kendo-autocomplete>
       </label>
       <label class="k-form-field">
         <div class="row">
           <div class="col-md-6">
             <span>Name</span>
-
-            <kendo-autocomplete name="libraryname" [data]="readers" [valueField]="'name'" [value]="name">
+            <kendo-autocomplete name="libraryname" [disabled]="true" [(ngModel)]="name">
             </kendo-autocomplete>
           </div>
           <div class="col-md-6">
@@ -50,6 +49,5 @@
 </div>
 </div>
 <kendo-dialog-actions>
-  <button kendoButton (click)="close('no')">No</button>
-  <button kendoButton (click)="close('yes')" primary="true">Yes</button>
+  <button kendoButton (click)="borrow()" primary="true">Yes</button>
 </kendo-dialog-actions>

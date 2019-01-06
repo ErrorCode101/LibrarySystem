@@ -45,25 +45,29 @@
           </ng-template>
         </kendo-grid-column>
         <kendo-grid-column field="sector" title="Sector" [filterable]="false"></kendo-grid-column>
-        <kendo-grid-column field="Status" title="Status" [filterable]="false"></kendo-grid-column>
+        <kendo-grid-column field="type" title="Type" [filterable]="false"></kendo-grid-column>
         <kendo-grid-column field="publisher" title="Publisher" [filterable]="false"></kendo-grid-column>
-        <kendo-grid-column field="availableDate.date" title="Availability" [filterable]="false"></kendo-grid-column>
-        <kendo-grid-command-column title="Manage">
-          <ng-template kendoGridCellTemplate let-dataItem class="k-block" style="background-color: #787878; color: #ffffff;">
-            <div class="k-block" *ngIf="dataItem.availableDate == 'Available'" style="background-color: #787878; color: #ffffff;">
-              <button kendoButton look="flat" >Borrow</button>
-            </div>
-            <div class="k-block" *ngIf="dataItem.availableDate != 'Available'" style="background-color: #787878; color: #ffffff;">
-              <button kendoButton look="flat">Return</button>
-            </div>
-          </ng-template>
-        </kendo-grid-command-column>
+        <kendo-grid-column field="availableDate" title="Return Date" [filterable]="false"></kendo-grid-column>
       </kendo-grid>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
-      <button kendoButton [primary]="true" class="pull-right">Generate Report</button>
+      <button kendoButton [primary]="true" class="pull-right" (click)="excelexport.save()">Generate Report</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <kendo-excelexport [data]="gridData.data" [group]="group" fileName="report.xlsx" #excelexport>
+        <kendo-excelexport-column field="isbn" title="ISBN">
+        </kendo-excelexport-column>
+        <kendo-excelexport-column field="title" title="Title">
+        </kendo-excelexport-column>
+        <kendo-excelexport-column field="sector" title="Sector"></kendo-excelexport-column>
+        <kendo-excelexport-column field="Status" title="Status"></kendo-excelexport-column>
+        <kendo-excelexport-column field="publisher" title="Publisher"></kendo-excelexport-column>
+        <kendo-excelexport-column field="availableDate" title="Return Date"></kendo-excelexport-column>
+      </kendo-excelexport>
     </div>
   </div>
 </div>
